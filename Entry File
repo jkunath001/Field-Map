@@ -1,0 +1,11 @@
+<script type="text/javascript">
+    var password = "SzYeJ6spGW";
+    var pass = prompt("This map is private. Please enter the password to view:","");
+    
+    if (pass === password) {
+        alert("Access Granted");
+    } else {
+        alert("Access Denied. Redirecting...");
+        window.location.href = "https://www.google.com"; // Sends unauthorized users away
+    }
+</script>
