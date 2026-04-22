@@ -1,0 +1,35 @@
+// Initialize the map
+const map = L.map('map').setView([0, 0], 2);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+}).addTo(map);
+
+// Trigger geolocation
+function locateUser() {
+    map.locate({ setView: true, maxZoom: 16 });
+}
+
+// Add a "Locate Me" button
+const locateBtn = L.control({position: 'topleft'});
+locateBtn.onAdd = function(map) {
+    const btn = L.DomUtil.create('button', 'locate-btn');
+    btn.innerHTML = '📍 Locate Me';
+    btn.onclick = locateUser;
+    return btn;
+};
+locateBtn.addTo(map);
+
+// Handle successful geolocation
+map.on('locationfound', function(e) {
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are here!").openPopup();
+
+    // Optional: Add an accuracy circle
+    L.circle(e.latlng, e.accuracy).addTo(map);
+});
+
+// Handle geolocation errors
+map.on('locationerror', function(e) {
+    alert("Location access denied or unavailable.");
+});
