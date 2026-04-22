@@ -1,0 +1,6 @@
+# Clone your repo (if not already)
+git clone https://github.com/jkunath001/Field-Map.git
+cd Field-Map
+
+# Create an index.html file with the code above
+# Then test locally or deploy to GitHub Pages
